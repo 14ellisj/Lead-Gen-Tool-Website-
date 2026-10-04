@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Lead Gen Tool finds and verifies the UK properties most likely to need what you sell, then helps you reach them.">
   <meta name="theme-color" content="#0f1d34">
-  <title>Lead Gen Tool — Find the properties. Win the customers.</title>
+  <title>Lead Gen Tool - Find the properties. Win the customers.</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1d34'/%3E%3Cpath d='M14 43V26l18-11 18 11v17H38V31H26v12H14Z' fill='%23ff675c'/%3E%3Ccircle cx='46' cy='18' r='6' fill='%23c8ff4d'/%3E%3C/svg%3E">
   <style>
     :root {
@@ -178,6 +178,17 @@
     .step-no { width: 41px; height: 41px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--navy); font-size: .78rem; font-weight: 950; }
     .step h3 { margin: 80px 0 12px; }
     .step p { margin: 0; color: var(--muted); font-size: .91rem; transition: color .2s ease; }
+    .verification-band {
+      margin-top: 24px; padding: 30px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 36px;
+      color: var(--white); background: var(--navy); border-radius: var(--radius);
+    }
+    .verification-band h3 { margin: 0 0 10px; font-size: 1.8rem; }
+    .verification-band > div > p { margin: 0; color: rgba(255,255,255,.65); font-size: .9rem; }
+    .verification-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .verification-point { padding: 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; }
+    .verification-point span { display: block; margin-bottom: 25px; color: var(--aqua); font-size: .7rem; font-weight: 900; }
+    .verification-point strong { display: block; margin-bottom: 7px; }
+    .verification-point p { margin: 0; color: rgba(255,255,255,.6); font-size: .76rem; }
 
     .platform { background: var(--navy); color: var(--white); overflow: hidden; }
     .platform .section-kicker { color: var(--aqua); }
@@ -216,6 +227,28 @@
     .map-overlay { position: absolute; inset: auto 12px 12px 12px; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,.94); font-size: .69rem; }
     .map-overlay strong { font-size: .88rem; }
     .dot { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; background: var(--coral); }
+
+    .economics { background: #fff3f1; }
+    .economics-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: center; }
+    .economics-copy .lead { margin-bottom: 28px; }
+    .comparison { overflow: hidden; border: 2px solid var(--navy); border-radius: var(--radius); background: var(--white); }
+    .compare-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+    .compare-row:last-child { border-bottom: 0; }
+    .compare-row > div { padding: 18px 20px; font-size: .84rem; }
+    .compare-row > div + div { border-left: 1px solid var(--line); background: #efffd1; }
+    .compare-row.compare-head { color: var(--white); background: var(--navy); font-weight: 900; }
+    .compare-row.compare-head > div + div { color: var(--navy); background: var(--aqua); }
+    .ppc-note { margin-top: 17px; padding: 19px 21px; border-radius: 14px; background: var(--white); font-size: .8rem; color: var(--muted); }
+    .ppc-note strong { color: var(--ink); }
+
+    .industries { background: var(--white); }
+    .industry-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .industry-card { min-height: 225px; padding: 24px; border: 1px solid var(--line); border-radius: 17px; background: var(--paper); }
+    .industry-card:nth-child(2) { background: #eaf9f8; }
+    .industry-card:nth-child(4) { background: #fff3f1; }
+    .industry-card span { display: block; margin-bottom: 62px; color: var(--coral-dark); font-size: .72rem; font-weight: 900; }
+    .industry-card h3 { margin-bottom: 9px; font-size: 1.28rem; }
+    .industry-card p { margin: 0; color: var(--muted); font-size: .81rem; }
 
     .cases { background: #eaf9f8; }
     .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -263,16 +296,18 @@
     .featured .price-list li::before { color: var(--lime); }
     .pricing-foot { margin: 30px 0 0; color: var(--muted); font-size: .79rem; text-align: center; }
 
-    .faq { background: var(--white); }
-    .faq-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 90px; align-items: start; }
-    .faq aside { position: sticky; top: 120px; }
-    .faq-list { border-top: 2px solid var(--navy); }
-    details { border-bottom: 1px solid var(--line); }
-    summary { list-style: none; display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 23px 0; font-weight: 850; cursor: pointer; }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; background: var(--paper); }
-    details[open] summary::after { content: "−"; background: var(--aqua); }
-    details p { margin: -6px 50px 25px 0; color: var(--muted); }
+    .campaigns { background: var(--white); }
+    .campaign-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: start; }
+    .campaign-copy .lead { margin-bottom: 0; }
+    .campaign-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .campaign-step { min-height: 205px; padding: 25px; border: 2px solid var(--navy); border-radius: 17px; background: var(--paper); }
+    .campaign-step:nth-child(2) { background: var(--aqua); }
+    .campaign-step:nth-child(3) { background: var(--lime); }
+    .campaign-step:nth-child(4) { color: var(--white); background: var(--navy); }
+    .campaign-step span { display: block; margin-bottom: 42px; font-size: .7rem; font-weight: 950; }
+    .campaign-step h3 { margin-bottom: 8px; font-size: 1.3rem; }
+    .campaign-step p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .campaign-step:nth-child(4) p { color: rgba(255,255,255,.65); }
 
     .final-cta { padding: 0; background: var(--navy); }
     .cta-panel { position: relative; overflow: hidden; padding: clamp(62px, 8vw, 100px); background: var(--coral); }
@@ -287,6 +322,80 @@
     .footer-copy { max-width: 390px; margin: 17px 0 0; color: rgba(255,255,255,.55); font-size: .83rem; }
     .footer-links { display: flex; flex-wrap: wrap; gap: 22px; color: rgba(255,255,255,.72); font-size: .8rem; font-weight: 700; }
     .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; color: rgba(255,255,255,.42); font-size: .69rem; }
+
+    .chat-assistant {
+      position: fixed; right: 20px; bottom: 20px; z-index: 80; width: min(310px, calc(100vw - 28px));
+      overflow: hidden; border: 2px solid var(--navy); border-radius: 17px; background: var(--white);
+      box-shadow: 10px 10px 0 rgba(15,29,52,.2), 0 20px 55px rgba(15,29,52,.18);
+    }
+    .chat-assistant.collapsed { width: 260px; }
+    .chat-assistant.collapsed .chat-body { display: none; }
+    .chat-head { padding: 15px 17px; display: flex; align-items: center; justify-content: space-between; gap: 15px; color: var(--white); background: var(--navy); }
+    .chat-head strong { font-size: .84rem; }
+    .chat-head-actions { display: flex; align-items: center; gap: 10px; }
+    .chat-status { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,.65); font-size: .64rem; }
+    .chat-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+    .chat-minimize { width: 27px; height: 27px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.24); border-radius: 8px; color: var(--white); background: rgba(255,255,255,.08); font-size: 1rem; font-weight: 900; line-height: 1; }
+    .chat-minimize:hover { background: rgba(255,255,255,.18); }
+    .chat-body { padding: 15px; }
+    .chat-intro { margin: 0 0 11px; color: var(--muted); font-size: .76rem; }
+    .chat-answer { display: none; margin: 0 0 11px; padding: 11px 12px; border-radius: 10px; color: var(--navy); background: #eaf9f8; font-size: .75rem; line-height: 1.45; }
+    .chat-answer.visible { display: block; }
+    .chat-questions { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chat-question { padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--navy); background: var(--paper); font-size: .67rem; font-weight: 800; }
+    .chat-question:hover, .chat-question.active { border-color: var(--navy); background: var(--lime); }
+    .chat-question.call { color: var(--white); background: var(--coral-dark); border-color: var(--coral-dark); }
+
+    .calculator-dialog {
+      width: min(620px, calc(100% - 28px)); max-height: calc(100vh - 28px); padding: 0;
+      border: 2px solid var(--navy); border-radius: 22px; color: var(--ink); background: var(--white);
+      box-shadow: 16px 16px 0 var(--navy), 0 30px 90px rgba(15,29,52,.28); overflow: auto;
+    }
+    .calculator-dialog::backdrop { background: rgba(15,29,52,.68); backdrop-filter: blur(5px); }
+    .calculator-dialog[open] { animation: calculator-in .28s ease-out; }
+    @keyframes calculator-in { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .calculator-top { padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--white); background: var(--navy); }
+    .calculator-brand { display: flex; align-items: center; gap: 10px; font-size: .78rem; font-weight: 900; letter-spacing: .03em; }
+    .calculator-brand i { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); }
+    .calculator-close { width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.24); border-radius: 9px; color: var(--white); background: rgba(255,255,255,.08); font-size: 1.1rem; }
+    .calculator-close:hover { background: rgba(255,255,255,.18); }
+    .calculator-progress { height: 7px; background: #e7eaec; }
+    .calculator-progress i { display: block; width: 25%; height: 100%; background: var(--coral); transition: width .25s ease; }
+    .calculator-content { padding: 34px; }
+    .calculator-step { display: none; padding: 0; }
+    .calculator-step.active { display: block; }
+    .calculator-count { margin: 0 0 13px; color: var(--coral-dark); font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; }
+    .calculator-step h2 { margin-bottom: 13px; font-size: clamp(2rem, 5vw, 3.15rem); }
+    .calculator-step > p:not(.calculator-count):not(.field-error) { margin-bottom: 25px; color: var(--muted); }
+    .calculator-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .calculator-field { display: grid; gap: 7px; }
+    .calculator-field.full { grid-column: 1 / -1; }
+    .calculator-field span { font-size: .77rem; font-weight: 850; }
+    .calculator-field input, .calculator-field select {
+      width: 100%; min-height: 52px; padding: 0 14px; border: 1px solid #cbd2da; border-radius: 10px;
+      color: var(--ink); background: var(--white); font-size: 1rem;
+    }
+    .calculator-field input:focus, .calculator-field select:focus { border-color: var(--navy); outline: 3px solid rgba(115,228,225,.45); }
+    .currency-input { position: relative; }
+    .currency-input::before { content: "£"; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-weight: 900; }
+    .currency-input input { padding-left: 32px; }
+    .field-error { min-height: 20px; margin: 10px 0 0; color: #b52f28; font-size: .75rem; font-weight: 750; }
+    .calculator-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; }
+    .calculator-actions.end { justify-content: flex-end; }
+    .calculator-back, .calculator-skip { padding: 10px 4px; border: 0; color: var(--navy); background: transparent; font-size: .78rem; font-weight: 850; text-decoration: underline; text-underline-offset: 3px; }
+    .calculator-skip { color: var(--coral-dark); }
+    .calculator-note { margin-top: 12px; color: var(--muted); font-size: .69rem; }
+    .result-card { padding: 24px; border: 2px solid var(--navy); border-radius: 18px; background: #eaf9f8; }
+    .result-number { display: block; margin-bottom: 4px; color: var(--navy); font-size: clamp(4rem, 12vw, 6.5rem); line-height: .86; font-weight: 950; letter-spacing: -.08em; }
+    .result-label { display: block; font-size: 1rem; font-weight: 900; }
+    .result-summary { margin: 18px 0 0; color: var(--muted); }
+    .result-summary strong { color: var(--ink); }
+    .result-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 18px; }
+    .result-fact { padding: 12px; border-radius: 10px; background: var(--white); }
+    .result-fact small { display: block; color: var(--muted); font-size: .64rem; }
+    .result-fact strong { display: block; margin-top: 3px; font-size: .96rem; }
+    .result-plan-note { margin: 14px 0 0; color: var(--muted); font-size: .72rem; }
+    .result-plan-note strong { color: var(--ink); }
 
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -317,8 +426,8 @@
       .case-card h3 { margin-top: 45px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .price-card.featured { transform: none; }
-      .faq-grid { grid-template-columns: 1fr; gap: 40px; }
-      .faq aside { position: static; }
+      .verification-band, .economics-grid, .campaign-grid { grid-template-columns: 1fr; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
       .cta-grid { grid-template-columns: 1fr; }
       .cta-actions { max-width: 300px; }
     }
@@ -358,6 +467,23 @@
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; }
       .cta-panel { padding-inline: 25px; }
+      .verification-points, .industry-grid, .campaign-steps { grid-template-columns: 1fr; }
+      .industry-card { min-height: 175px; }
+      .industry-card span { margin-bottom: 35px; }
+      .chat-assistant { right: 14px; left: 14px; bottom: 14px; width: auto; }
+      .chat-head { padding: 11px 13px; }
+      .chat-body { padding: 10px; }
+      .chat-intro { display: none; }
+      .chat-answer { max-height: 58px; overflow: auto; margin-bottom: 8px; padding: 8px 10px; }
+      .chat-questions { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 3px; }
+      .chat-question { flex: 0 0 auto; padding: 7px 9px; }
+      .calculator-dialog { max-height: calc(100vh - 16px); }
+      .calculator-content { padding: 25px 20px; }
+      .calculator-fields, .result-facts { grid-template-columns: 1fr; }
+      .calculator-field.full { grid-column: auto; }
+      .calculator-actions { align-items: stretch; flex-direction: column-reverse; }
+      .calculator-actions.end { align-items: stretch; }
+      .calculator-actions .button { width: 100%; }
     }
   </style>
 </head>
@@ -372,10 +498,11 @@
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#product">Product</a>
+        <a href="#results">Results</a>
+        <a href="#industries">Industries</a>
         <a href="#cases">Case studies</a>
         <a href="#about">About us</a>
         <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQs</a>
       </div>
       <div class="nav-actions">
         <a class="button button-outline" href="#cases">See proof</a>
@@ -414,7 +541,7 @@
           <div class="criteria">
             <div class="criterion">
               <span class="criterion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11 12 4l9 7v9H3v-9Z"/><path d="M9 20v-6h6v6"/></svg></span>
-              <span><small>Property type</small><strong>Detached & semi-detached</strong></span><span class="toggle" aria-hidden="true"></span>
+              <span><small>Property type</small><strong>Detached &amp; semi-detached</strong></span><span class="toggle" aria-hidden="true"></span>
             </div>
             <div class="criterion">
               <span class="criterion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 14 8-8 8 8"/><path d="M6 12v8h12v-8M9 20v-5h6v5"/></svg></span>
@@ -427,7 +554,7 @@
           </div>
           <button class="button scan" type="button" id="scanButton">Scan for matching properties</button>
           <div class="scan-state" aria-live="polite">
-            <span id="scanLabel">Ready to scan</span><span class="scan-line"><i></i></span><span class="scan-result" id="scanResult">—</span>
+            <span id="scanLabel">Ready to scan</span><span class="scan-line"><i></i></span><span class="scan-result" id="scanResult">-</span>
           </div>
         </div>
       </div>
@@ -453,6 +580,14 @@
           <article class="step"><span class="step-no">02</span><h3>Scan the market</h3><p>Satellite and property data locate the homes that match your brief across your chosen territory.</p></article>
           <article class="step"><span class="step-no">03</span><h3>Verify each lead</h3><p>A human quality-control layer checks the result against your criteria before it reaches you.</p></article>
           <article class="step"><span class="step-no">04</span><h3>Reach the right door</h3><p>Export verified addresses or run an end-to-end direct-mail campaign from the platform.</p></article>
+        </div>
+        <div class="verification-band reveal">
+          <div><p class="eyebrow section-kicker">Lead verification</p><h3>Technology finds them. Our team verifies them.</h3><p>Your criteria, our proprietary technology and a human quality-control layer between the data and your sales team.</p></div>
+          <div class="verification-points">
+            <article class="verification-point"><span>01</span><strong>Identify</strong><p>Satellite imagery reveals potential property matches at scale.</p></article>
+            <article class="verification-point"><span>02</span><strong>Analyse</strong><p>Each property is assessed against the criteria in your brief.</p></article>
+            <article class="verification-point"><span>03</span><strong>Verify</strong><p>Human review checks the final batch before it becomes a lead.</p></article>
+          </div>
         </div>
       </div>
     </section>
@@ -499,6 +634,43 @@
       </div>
     </section>
 
+    <section class="economics" id="results">
+      <div class="container economics-grid">
+        <div class="economics-copy reveal">
+          <p class="eyebrow section-kicker">The economics of precision</p>
+          <h2>Stop paying to reach everyone.</h2>
+          <p class="lead">Traditional advertising starts with a broad audience and qualifies people afterwards. Lead Gen Tool starts with the property, so your outreach budget is focused before the first message lands.</p>
+          <a class="button button-dark" href="#pricing">Compare plans</a>
+        </div>
+        <div class="reveal">
+          <div class="comparison" aria-label="Traditional PPC and Lead Gen Tool comparison">
+            <div class="compare-row compare-head"><div>Traditional PPC</div><div>Lead Gen Tool</div></div>
+            <div class="compare-row"><div>Pay for clicks</div><div>Pay for verified property leads</div></div>
+            <div class="compare-row"><div>Target people already searching</div><div>Target properties that fit</div></div>
+            <div class="compare-row"><div>Qualification happens afterwards</div><div>Qualification happens before outreach</div></div>
+            <div class="compare-row"><div>Compete for attention</div><div>Take your message directly to the property</div></div>
+          </div>
+          <div class="ppc-note"><strong>Illustrative PPC example:</strong> at a £5 average cost per click, a £1,000 budget buys about 200 clicks. Those clicks still need to become enquiries, appointments and customers. Our model begins with identify → verify → target → contact.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="industries" id="industries">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow section-kicker">Who it’s for</p><h2>If the right customer leaves clues on their property, we can help find them.</h2></div>
+          <p class="lead">The strongest campaigns connect a visible property characteristic to a valuable service your team can deliver.</p>
+        </div>
+        <div class="industry-grid">
+          <article class="industry-card reveal"><span>01</span><h3>Solar</h3><p>Find properties with the roof area, orientation and characteristics installation teams need.</p></article>
+          <article class="industry-card reveal"><span>02</span><h3>Pools</h3><p>Target homes with the space and property characteristics suited to outdoor living.</p></article>
+          <article class="industry-card reveal"><span>03</span><h3>Home improvement</h3><p>Roofing, windows, extensions, driveways and landscaping.</p></article>
+          <article class="industry-card reveal"><span>04</span><h3>EV &amp; tech</h3><p>Identify properties suited to EV charging and higher-value home technology.</p></article>
+          <article class="industry-card reveal"><span>05</span><h3>Premium services</h3><p>Find high-value residential prospects using visible physical signals.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="cases" id="cases">
       <div class="container">
         <div class="section-head reveal">
@@ -533,7 +705,7 @@
 
     <section class="pricing" id="pricing">
       <div class="container">
-        <div class="pricing-intro reveal"><p class="eyebrow section-kicker">Simple pricing</p><h2>Start with a focused patch. Scale when it works.</h2><p class="lead">One credit unlocks one human-verified property lead. Every plan includes targeting, review and export.</p></div>
+        <div class="pricing-intro reveal"><p class="eyebrow section-kicker">Simple pricing</p><h2>Start with a focused patch. Scale when it works.</h2><p class="lead">One credit unlocks one human-verified property lead. Every plan includes targeting, review and export. Upgrade as your requirements grow or purchase additional credits when you need them.</p></div>
         <div class="pricing-grid">
           <article class="price-card reveal">
             <h3>Starter</h3><small>Test a territory or new service</small><div class="price">£199<span>/month</span></div><div class="credits">50 verified leads included</div>
@@ -551,19 +723,22 @@
             <a class="button button-outline button-block" href="#contact">Choose Pro</a>
           </article>
         </div>
-        <p class="pricing-foot">Need more volume or bespoke criteria? Enterprise campaigns can be scoped around your territory.</p>
+        <p class="pricing-foot">Need more volume or bespoke criteria? Enterprise campaigns can be scoped around your territory. Direct-mail production is available as part of eligible campaigns.</p>
       </div>
     </section>
 
-    <section class="faq" id="faq">
-      <div class="container faq-grid">
-        <aside class="reveal"><p class="eyebrow section-kicker">Good questions</p><h2>Before you buy a single lead.</h2><p class="lead">The useful answers, without the sales fog.</p></aside>
-        <div class="faq-list reveal">
-          <details open><summary>What counts as a verified lead?</summary><p>A property that meets the criteria agreed for your campaign and has passed a human review before delivery. It is a qualified property lead, not a promise that the resident is ready to buy.</p></details>
-          <details><summary>How is this different from buying a postcode list?</summary><p>A postcode list gives you geography. Lead Gen Tool adds visible property characteristics, suitability signals and a quality-control step so the final audience is materially narrower.</p></details>
-          <details><summary>Can I use the leads in my own CRM?</summary><p>Yes. Verified leads can be exported for your team, or used to run an end-to-end direct-mail campaign through the platform.</p></details>
-          <details><summary>Which industries are a good fit?</summary><p>Any offer where suitability leaves a visible clue on the property: solar, roofing, windows, pools, EV charging, driveways, landscaping and other home-improvement services.</p></details>
-          <details><summary>Are leads exclusive?</summary><p>Exclusivity should be agreed at campaign level. The launch version of this site should be updated with your final commercial policy before going live.</p></details>
+    <section class="campaigns" id="campaigns">
+      <div class="container campaign-grid">
+        <div class="campaign-copy reveal">
+          <p class="eyebrow section-kicker">End-to-end campaigns</p>
+          <h2>From property intelligence to your customer’s door.</h2>
+          <p class="lead">Use your own creative, choose a professionally developed template, or let the team manage the campaign. Lead Gen Tool can handle printing, fulfilment and direct-mail distribution to your verified addresses.</p>
+        </div>
+        <div class="campaign-steps reveal">
+          <article class="campaign-step"><span>01</span><h3>Identify</h3><p>Find properties matching your ideal customer profile.</p></article>
+          <article class="campaign-step"><span>02</span><h3>Create</h3><p>Upload your creative or select a campaign template.</p></article>
+          <article class="campaign-step"><span>03</span><h3>Approve</h3><p>Review the campaign and confirm your verified addresses.</p></article>
+          <article class="campaign-step"><span>04</span><h3>Deliver</h3><p>Printing, fulfilment and direct-mail distribution are handled for you.</p></article>
         </div>
       </div>
     </section>
@@ -582,11 +757,84 @@
     <div class="container">
       <div class="footer-top">
         <div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9.5L12 5l8 4.5V18h-5v-5H9v5H4Z" fill="currentColor"/><circle cx="18.5" cy="5.5" r="2.5" fill="#c8ff4d"/></svg></span><span>LEAD <span>GEN TOOL</span></span></a><p class="footer-copy">Property-level lead generation for teams that sell to homes.</p></div>
-        <nav class="footer-links" aria-label="Footer navigation"><a href="#product">Product</a><a href="#cases">Case studies</a><a href="#about">About us</a><a href="#pricing">Pricing</a><a href="#faq">FAQs</a></nav>
+        <nav class="footer-links" aria-label="Footer navigation"><a href="#product">Product</a><a href="#results">Results</a><a href="#industries">Industries</a><a href="#cases">Case studies</a><a href="#about">About us</a><a href="#pricing">Pricing</a></nav>
       </div>
       <div class="footer-bottom"><span>© 2026 Lead Gen Tool. All rights reserved.</span><span>Privacy · Terms · Contact</span></div>
     </div>
   </footer>
+
+  <aside class="chat-assistant" aria-label="Lead Gen Tool quick questions">
+    <div class="chat-head"><strong>Not sure where to start?</strong><div class="chat-head-actions"><span class="chat-status">Here to help</span><button class="chat-minimize" id="chatMinimize" type="button" aria-expanded="true" aria-controls="chatBody" aria-label="Minimise quick questions">−</button></div></div>
+    <div class="chat-body" id="chatBody">
+      <p class="chat-intro" id="chatIntro">Choose a question for a quick answer.</p>
+      <p class="chat-answer" id="chatAnswer" aria-live="polite"></p>
+      <div class="chat-questions">
+        <button class="chat-question" type="button" data-answer="You spend your budget reaching properties that already fit your brief, rather than paying to reach everyone and qualifying them afterwards.">Why should I use you?</button>
+        <button class="chat-question" type="button" data-answer="Set your criteria, scan the market, verify each property and export the results-or turn them into a direct-mail campaign.">How does it work?</button>
+        <button class="chat-question" type="button" data-answer="Starter suits a first market test, Growth suits repeat campaigns, and Pro is designed for larger territories and higher volume.">Which plan is right for me?</button>
+        <button class="chat-question" type="button" data-answer="Starter is £199 a month, Growth is £499, and Pro is £999. Each plan includes a set number of verified lead credits.">How much does it cost?</button>
+        <button class="chat-question" type="button" data-answer="If your ideal customer leaves visible clues on their property-such as roof size, outdoor space or off-street parking-we can build a focused search around them.">Can you find my customers?</button>
+        <a class="chat-question call" href="mailto:hello@leadgentool.co.uk?subject=Lead%20Gen%20Tool%20discovery%20call">Book a call</a>
+      </div>
+    </div>
+  </aside>
+
+  <dialog class="calculator-dialog" id="calculatorDialog" aria-labelledby="calculatorTitle">
+    <div class="calculator-top">
+      <div class="calculator-brand"><i aria-hidden="true"></i>LEAD VALUE CALCULATOR</div>
+      <button class="calculator-close" id="calculatorClose" type="button" aria-label="Close calculator">×</button>
+    </div>
+    <div class="calculator-progress" aria-hidden="true"><i id="calculatorProgress"></i></div>
+    <form class="calculator-content" id="calculatorForm" novalidate>
+      <section class="calculator-step active" data-step="1">
+        <p class="calculator-count">Step 1 of 3</p>
+        <h2 id="calculatorTitle">What could £100 of leads be worth to you?</h2>
+        <p>Start with a little about you and the market you sell into.</p>
+        <div class="calculator-fields">
+          <label class="calculator-field"><span>Your name</span><input id="calculatorName" name="name" type="text" autocomplete="name" placeholder="e.g. Alex" required></label>
+          <label class="calculator-field"><span>Your sector</span><select id="calculatorSector" name="sector" required><option value="">Choose a sector</option><option>Solar</option><option>Roofing</option><option>EV &amp; home technology</option><option>Windows &amp; glazing</option><option>Home improvement</option><option>Pools &amp; outdoor living</option><option>Premium services</option><option>Other</option></select></label>
+        </div>
+        <p class="field-error" id="calculatorError1" aria-live="polite"></p>
+        <div class="calculator-actions end"><button class="button button-primary" id="calculatorNext1" type="button">Next: sale value</button></div>
+      </section>
+
+      <section class="calculator-step" data-step="2">
+        <p class="calculator-count">Step 2 of 3</p>
+        <h2>What is an average sale worth?</h2>
+        <p>Use the average amount a customer pays for the product or service you’re selling.</p>
+        <label class="calculator-field full"><span>Average product or service value</span><span class="currency-input"><input id="calculatorPrice" name="average_price" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="100" required></span></label>
+        <p class="field-error" id="calculatorError2" aria-live="polite"></p>
+        <div class="calculator-actions"><button class="calculator-back" type="button" data-back="1">Back</button><button class="button button-primary" id="calculatorNext2" type="button">Calculate my result</button></div>
+      </section>
+
+      <section class="calculator-step" data-step="3">
+        <p class="calculator-count">One last step</p>
+        <h2>Where should we show your result?</h2>
+        <p>Enter your email to continue. During development, you can skip this step for faster testing.</p>
+        <label class="calculator-field full"><span>Email address</span><input id="calculatorEmail" name="email" type="email" autocomplete="email" placeholder="you@company.co.uk" required></label>
+        <p class="field-error" id="calculatorError3" aria-live="polite"></p>
+        <p class="calculator-note">Development build: this information stays on this page and is not submitted anywhere.</p>
+        <div class="calculator-actions"><button class="calculator-back" type="button" data-back="2">Back</button><div><button class="calculator-skip" id="calculatorSkip" type="button">Skip email for testing</button> <button class="button button-primary" id="calculatorShow" type="button">Show my result</button></div></div>
+      </section>
+
+      <section class="calculator-step" data-step="4" aria-live="polite">
+        <p class="calculator-count">Your break-even result</p>
+        <h2 id="resultGreeting">Here’s your result.</h2>
+        <div class="result-card">
+          <span class="result-number" id="resultNumber">1.000</span>
+          <span class="result-label" id="resultLabel">sales needed to recover a £100 lead spend</span>
+          <p class="result-summary" id="resultSummary"></p>
+          <div class="result-facts">
+            <div class="result-fact"><small>LEADS FOR £100</small><strong id="resultLeads">35.070</strong></div>
+            <div class="result-fact"><small>LEAD SPEND</small><strong>£100</strong></div>
+            <div class="result-fact"><small>BREAK-EVEN RATE</small><strong id="resultRate">2.851%</strong></div>
+          </div>
+          <p class="result-plan-note"><strong>Rate used:</strong> £499 for 175 leads, equal to approximately £2.8514 per lead.</p>
+        </div>
+        <div class="calculator-actions"><button class="calculator-back" type="button" data-back="2">Change my numbers</button><button class="button button-dark" id="calculatorDone" type="button">Done</button></div>
+      </section>
+    </form>
+  </dialog>
 
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
@@ -619,7 +867,7 @@
       scanTimer = window.setTimeout(() => {
         scanLabel.textContent = 'High-confidence matches';
         scanResult.textContent = '214';
-        scanButton.textContent = 'Scan complete — view 214 matches';
+        scanButton.textContent = 'Scan complete - view 214 matches';
         scanButton.disabled = false;
       }, 1150);
     });
@@ -639,6 +887,108 @@
         featureCopy.textContent = button.dataset.copy;
         dashFeature.textContent = button.dataset.feature;
       });
+    });
+
+    const chatAnswer = document.getElementById('chatAnswer');
+    const chatIntro = document.getElementById('chatIntro');
+    const chatAssistant = document.querySelector('.chat-assistant');
+    const chatMinimize = document.getElementById('chatMinimize');
+    chatMinimize.addEventListener('click', () => {
+      const collapsed = chatAssistant.classList.toggle('collapsed');
+      chatMinimize.textContent = collapsed ? '+' : '−';
+      chatMinimize.setAttribute('aria-expanded', String(!collapsed));
+      chatMinimize.setAttribute('aria-label', collapsed ? 'Expand quick questions' : 'Minimise quick questions');
+    });
+    document.querySelectorAll('.chat-question[data-answer]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.chat-question[data-answer]').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        chatIntro.hidden = true;
+        chatAnswer.textContent = button.dataset.answer;
+        chatAnswer.classList.add('visible');
+      });
+    });
+
+    const calculatorDialog = document.getElementById('calculatorDialog');
+    const calculatorProgress = document.getElementById('calculatorProgress');
+    const calculatorName = document.getElementById('calculatorName');
+    const calculatorSector = document.getElementById('calculatorSector');
+    const calculatorPrice = document.getElementById('calculatorPrice');
+    const calculatorEmail = document.getElementById('calculatorEmail');
+    const calculatorSteps = document.querySelectorAll('.calculator-step');
+    const calculatorErrors = {
+      1: document.getElementById('calculatorError1'),
+      2: document.getElementById('calculatorError2'),
+      3: document.getElementById('calculatorError3')
+    };
+
+    function showCalculatorStep(step) {
+      calculatorSteps.forEach(section => section.classList.toggle('active', section.dataset.step === String(step)));
+      calculatorProgress.style.width = `${step * 25}%`;
+      if (calculatorErrors[step]) calculatorErrors[step].textContent = '';
+    }
+
+    function showCalculatorResult() {
+      const averagePrice = Number(calculatorPrice.value);
+      const growthPlanCost = 499;
+      const growthPlanLeads = 175;
+      const leadCost = growthPlanCost / growthPlanLeads;
+      const spend = 100;
+      const leadsPurchased = spend / leadCost;
+      const conversionsNeeded = spend / averagePrice;
+      const completedSalesNeeded = Math.ceil(conversionsNeeded);
+      const preciseConversions = conversionsNeeded.toFixed(3);
+      const preciseLeads = leadsPurchased.toFixed(3);
+      const conversionRate = (conversionsNeeded / leadsPurchased) * 100;
+      const preciseRate = conversionRate.toFixed(3);
+      const canBreakEven = conversionsNeeded <= leadsPurchased;
+      const currency = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 2 });
+      const displayName = calculatorName.value.trim();
+      const sector = calculatorSector.value;
+
+      document.getElementById('resultGreeting').textContent = `${displayName}, here’s your ${sector.toLowerCase()} result.`;
+      document.getElementById('resultNumber').textContent = preciseConversions;
+      document.getElementById('resultLabel').textContent = canBreakEven
+        ? `${conversionsNeeded === 1 ? 'sale' : 'sales'} needed from ${preciseLeads} leads to recover £100`
+        : `sales would be needed, so a £100 lead spend would not break even`;
+      document.getElementById('resultLeads').textContent = preciseLeads;
+      document.getElementById('resultRate').textContent = `${preciseRate}%`;
+      document.getElementById('resultSummary').innerHTML = canBreakEven
+        ? `At <strong>${currency.format(averagePrice)}</strong> per sale, £100 buys approximately <strong>${preciseLeads} leads</strong>. You need <strong>${preciseConversions} sales</strong>, a <strong>${preciseRate}% conversion rate</strong>, to recover that spend. In practice, <strong>${completedSalesNeeded} completed ${completedSalesNeeded === 1 ? 'sale' : 'sales'}</strong> would cover the cost.`
+        : `At <strong>${currency.format(averagePrice)}</strong> per sale, even converting all ${preciseLeads} leads would generate only <strong>${currency.format(leadsPurchased * averagePrice)}</strong>, below the £100 lead spend.`;
+      showCalculatorStep(4);
+    }
+
+    window.setTimeout(() => {
+      if (!calculatorDialog.open) calculatorDialog.showModal();
+    }, 2000);
+
+    document.getElementById('calculatorClose').addEventListener('click', () => calculatorDialog.close());
+    document.getElementById('calculatorDone').addEventListener('click', () => calculatorDialog.close());
+    document.getElementById('calculatorNext1').addEventListener('click', () => {
+      if (!calculatorName.value.trim() || !calculatorSector.value) {
+        calculatorErrors[1].textContent = 'Please enter your name and choose a sector.';
+        return;
+      }
+      showCalculatorStep(2);
+    });
+    document.getElementById('calculatorNext2').addEventListener('click', () => {
+      if (!calculatorPrice.value || Number(calculatorPrice.value) <= 0) {
+        calculatorErrors[2].textContent = 'Please enter an average sale value greater than £0.';
+        return;
+      }
+      showCalculatorStep(3);
+    });
+    document.getElementById('calculatorShow').addEventListener('click', () => {
+      if (!calculatorEmail.value || !calculatorEmail.checkValidity()) {
+        calculatorErrors[3].textContent = 'Please enter a valid email address, or use the testing skip button.';
+        return;
+      }
+      showCalculatorResult();
+    });
+    document.getElementById('calculatorSkip').addEventListener('click', showCalculatorResult);
+    document.querySelectorAll('[data-back]').forEach(button => {
+      button.addEventListener('click', () => showCalculatorStep(Number(button.dataset.back)));
     });
 
     const observer = new IntersectionObserver(entries => {
